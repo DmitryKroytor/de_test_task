@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 @app.post("/predict")
 async def predict(dto: Union[DataModelDto, list[DataModelDto]]):
     try:
-        logger.info(f"Prediction: received data transfer object of length {len(dto)}")
+        logger.info(f"Prediction: received data transfer object of length {len(dto) if isinstance(dto, list) else 1}")
         if isinstance(dto, DataModelDto):
             dto_list = [dto]
         else:
